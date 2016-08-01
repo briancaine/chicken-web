@@ -202,8 +202,11 @@
              (doc (get-document (database-connection) id)))
     (document->object/error doc)))
 
-(define (save-couchdb-document doc)
-  (document->object/error (save-document (database-connection) (document doc))))
+(define (save-couchdb-document! doc)
+  (let ((new-obj (document->object/error (save-document (database-connection) (document doc)))))
+    (set! (db-id doc) (db-id new-obj))
+    (set! (db-rev doc) (db-rev new-obj))
+    new-obj))
 
 (define schema-json-source
   (with-input-from-file "web/schema.json" json-read))
