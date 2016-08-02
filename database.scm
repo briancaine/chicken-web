@@ -1,4 +1,5 @@
 (use couchdb http-client intarweb)
+(use coops coops-utils)
 
 (define-syntax alist-or-nothing
   (syntax-rules ()
