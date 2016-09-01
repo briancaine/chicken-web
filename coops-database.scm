@@ -15,8 +15,14 @@
 (define-method (db-id (doc <couchdb-document>))
   (document-id (document doc)))
 
+(define-method ((setter db-id) (doc <couchdb-document>) (val #t))
+  (set! (document doc) (update-document (document doc) id: val)))
+
 (define-method (db-rev (doc <couchdb-document>))
   (document-rev (document doc)))
+
+(define-method ((setter db-rev) (doc <couchdb-document>) (val #t))
+  (set! (document doc) (update-document (document doc) rev: val)))
 
 (define (json->document json)
   (make-document id: (json-get '_id json)
