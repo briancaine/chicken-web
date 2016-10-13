@@ -1,5 +1,5 @@
 (use couchdb http-client intarweb)
-(use coops coops-utils)
+(use coops coops-utils json vector-lib uri-common)
 
 (define-syntax alist-or-nothing
   (syntax-rules ()
